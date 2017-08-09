@@ -1,13 +1,23 @@
 package com.denissc.views;
 
 import com.denissc.views.companies.CompanyCrudViewFactory;
+import com.denissc.views.customers.CustomerCrudViewFactory;
+import com.denissc.views.developers.DeveloperCrudViewFactory;
+import com.denissc.views.projects.ProjectCrudViewFactory;
+import com.denissc.views.skills.SkillCrudViewFactory;
+import com.denissc.views.teams.TeamCrudViewFactory;
 
 /**
  * Created by denissc on 05.08.17.
  */
 public class MainMenuView extends ConsoleView {
 
-    CompanyCrudViewFactory companyCrudViewFactory = new CompanyCrudViewFactory();
+    ConsoleCrudViewFactory companyCrudViewFactory = new CompanyCrudViewFactory();
+    ConsoleCrudViewFactory customerCrudViewFactory = new CustomerCrudViewFactory();
+    ConsoleCrudViewFactory projectCrudViewFactory = new ProjectCrudViewFactory();
+    ConsoleCrudViewFactory teamCrudViewFactory = new TeamCrudViewFactory();
+    ConsoleCrudViewFactory developerCrudViewFactory = new DeveloperCrudViewFactory();
+    ConsoleCrudViewFactory skillCrudViewFactory = new SkillCrudViewFactory();
 
     @Override
     public void template() {
@@ -28,12 +38,21 @@ public class MainMenuView extends ConsoleView {
             case "1":
                 companyCrudViewFactory.getListView().render();
                 break;
-//            case "2":
-//                new CustomersList(new CustomerController()).render();
-//                break;
-//            case "3":
-//                new ProjectsList(new ProjectController()).render();
-//                break;
+            case "2":
+                customerCrudViewFactory.getListView().render();
+                break;
+            case "3":
+                projectCrudViewFactory.getListView().render();
+                break;
+            case "4":
+                teamCrudViewFactory.getListView().render();
+                break;
+            case "5":
+                developerCrudViewFactory.getListView().render();
+                break;
+            case "6":
+                skillCrudViewFactory.getListView().render();
+                break;
             case "quit":
                 break;
             default:

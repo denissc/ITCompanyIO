@@ -10,7 +10,7 @@ public class CompanyCrudViewFactory implements ConsoleCrudViewFactory {
 
     @Override
     public ConsoleView getListView() {
-        return new CompaniesListView();
+        return new CompanyListView();
     }
 
     @Override

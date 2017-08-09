@@ -9,6 +9,10 @@ public class Developer implements Model{
     private String name;
     private String occupation;
 
+    public Developer(int id) {
+        this(id,0,"","");
+    }
+
     public Developer(int id, int teamId, String name, String occupation) {
         this.id = id;
         this.teamId = teamId;

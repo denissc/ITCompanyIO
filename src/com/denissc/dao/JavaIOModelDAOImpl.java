@@ -1,75 +1,91 @@
 package com.denissc.dao;
 
-import models.Developer;
+import com.denissc.models.Model;
 
 import java.io.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
- * models.Developer DAO crud operations thought file
+ * Models DAO crud operations thought file
  */
 public abstract class JavaIOModelDAOImpl<E> implements ModelDao<E>{
-    private final int STRING_LENGTH = 15;
+    final int STRING_LENGTH = 15;
+    private String filePath = System.getProperty("user.dir") + "/resources/";
     private RandomAccessFile file;
-    protected String filePath = System.getProperty("user.dir") + "/resources/developers.txt";
 
-    /**
-     * Returns new class instance
-     */
-    public JavaIOModelDAOImpl() {
-//        String filePath = System.getProperty("user.dir") + "/resources/developers.txt";
+    JavaIOModelDAOImpl() {
         try {
-            file = new RandomAccessFile(new File(filePath),"rw");
+            file = new RandomAccessFile(new File(getFullFilePath()),"rw");
         } catch (FileNotFoundException e) {
             System.out.println("(FATAL) File not found.");
         }
     }
+    private String getFullFilePath(){
+        return filePath + getFileName();
+    }
+
+
+    abstract String getFileName();
+
+    @Override
+    public Set<E> findAll() {
+        Set<E> records = new HashSet<>();
+        try {
+            long recordsAmount = file.length() / getModelEntitySize();
+            for (long i = 1; i <= recordsAmount;i++ ) {
+                seekRecord(i);
+                records.add(readRecord());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return records;
+    }
+
+    @Override
+    public Set<E> findWhere(ModelCondition<E> condition) {
+        Set<E> records = new HashSet<>();
+        try {
+            long recordsAmount = file.length() / getModelEntitySize();
+            for (long i = 1; i <= recordsAmount;i++ ) {
+                seekRecord(i);
+                E record = readRecord();
+                if (condition.isPassesCondition(record)) {
+                    records.add(record);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return records;
+    }
 
     /**
      * Return developer founded by id
-     * @param developerId developer id
+     * @param recordId developer id
      * @return founded developer or null if it is not founded
      */
     @Override
-    public Developer findById(int developerId) {
-        Developer developer = null;
-        if (developerId < 1) {
-            System.out.println("(INFO) Developer not exists.");
+    public E findById(int recordId) {
+        E record = null;
+        if (recordId < 1) {
+            System.out.println("(INFO) ID parameter is invalid.");
         } else {
-            seekRecord(developerId);
-            developer = readDeveloper();
-            if (developer.getId() == 0)
-                developer = null;
+            seekRecord(recordId);
+            record = readRecord();
         }
 
-        return developer;
+        return record;
     }
 
-    /**
-     * Read developer data from file
-     * @return developer from file
-     */
-    private Developer readDeveloper() {
-        int id = 0, age = 0;
-        String name = "", occupation = "";
-        try {
-            id = readInt();
-            name = readString();
-            occupation = readString();
-            age = readInt();
-        } catch (EOFException e){
-//            End of file
-        } catch (IOException e) {
-            System.out.println("(INFO) Failed to read developer.");
-        }
-
-        return new Developer(id,name,occupation,age);
-    }
+    abstract E readRecord();
 
     /**
      * Read string from file
      * @return string
      */
-    private String readString() throws IOException {
+    String readString() throws IOException {
         char[] chars = new char[STRING_LENGTH];
         for (int i = 0; i < chars.length; i++) {
             chars[i] = file.readChar();
@@ -81,50 +97,31 @@ public abstract class JavaIOModelDAOImpl<E> implements ModelDao<E>{
      * Read integer from file
      * @return integer
      */
-    private int readInt() throws IOException {
+    int readInt() throws IOException {
         return file.readInt();
     }
 
     /**
-     * Saves new developer to the file
-     * @param developer new developer
+     * Saves new record to the file
+     * @param record new record
      */
-    @Override
-    public void save(Developer developer) {
-        Developer d = findById(developer.getId());
+    public void create(E record) {
+        Model model = (Model)record;
+        Model d = (Model)findById(model.getId());
         if (d == null || d.getId() == 0) {
-            writeDeveloper(developer);
+            writeRecord(record);
         } else {
-            System.out.printf("(INFO) Developer with id %s is exist. skipping.\n",developer.getId());
+            System.out.printf("(INFO) Record with id %s is exist. skipping.\n",model.getId());
         }
     }
 
-    /**
-     * Write developer data to file
-     * @param developer -that witll be written to file
-     */
-    private void writeDeveloper(Developer developer) {
-        if (developer.getName().length() > STRING_LENGTH ||
-                developer.getOccupation().length() > STRING_LENGTH) {
-            System.out.printf("(INFO) String characters limit is %s. skipping.\n", STRING_LENGTH);
-        } else {
-            try {
-                writeInt(developer.getId());
-                writeString(developer.getName());
-                writeString(developer.getOccupation());
-                writeInt(developer.getAge());
-            } catch (IOException e) {
-                System.out.println("(INFO) Failed to write developer.");
-            }
-        }
-
-    }
+    abstract void writeRecord(E record);
 
     /**
      * Writes string to file
      * @param string string that will be written to file
      */
-    private void writeString(String string) throws IOException {
+    void writeString(String string) throws IOException {
         StringBuffer buffer;
         if (string != null)
             buffer = new StringBuffer(string);
@@ -140,7 +137,7 @@ public abstract class JavaIOModelDAOImpl<E> implements ModelDao<E>{
      * Writes integer to file
      * @param integer integer that will be written to file
      */
-    private void writeInt(int integer) throws IOException {
+    void writeInt(int integer) throws IOException {
         file.writeInt(integer);
     }
 
@@ -150,16 +147,16 @@ public abstract class JavaIOModelDAOImpl<E> implements ModelDao<E>{
      * @param id id of developer record in file
      * @return success of seek operation
      */
-    private boolean seekRecord(int id) {
+    private boolean seekRecord(long id) {
         boolean success = false;
         int modelEntitySize = getModelEntitySize();
-        int modelEntityOffset = (id - 1) * modelEntitySize;
+        long modelEntityOffset = (id - 1) * modelEntitySize;
 
         try {
             file.seek(modelEntityOffset);
             success = true;
         } catch (IOException e) {
-            System.out.println("(INFO) Failed to find developer.");
+            System.out.println("(INFO) Failed to find record.");
         }
         return success;
     }
@@ -167,30 +164,30 @@ public abstract class JavaIOModelDAOImpl<E> implements ModelDao<E>{
     abstract int getModelEntitySize();
 
     /**
-     * Updates existed developer by it id, rewrites the file
-     * @param developer new developer data
+     * Updates existed record by it id, rewrites the file
+     * @param record new record data
      */
-    @Override
-    public void update(Developer developer) {
-        if (developer.getId() < 1) {
-            System.out.println("(INFO) Developer not exists.");
+    public void update(E record) {
+        Model model = (Model)record;
+        if (model.getId() < 1) {
+            System.out.println("(INFO) ID parameter is invalid.");
         } else {
-            seekRecord(developer.getId());
-            writeDeveloper(developer);
+            seekRecord(model.getId());
+            writeRecord(record);
         }
     }
 
     /**
-     * Delete existed developer, and rewrite the file
-     * @param developer developer
+     * Delete existed record, and rewrite the file
+     * @param record record
      */
-    @Override
-    public void delete(Developer developer) {
-        if (developer.getId() < 1) {
-            System.out.println("(INFO) Developer not exists.");
+    public void delete(E record) {
+        Model model = (Model) record;
+        if (model.getId() < 1) {
+            System.out.println("(INFO) ID parameter is invalid.");
         } else {
-            seekRecord(developer.getId());
-            writeDeveloper(new Developer(0,"","",0));
+            seekRecord(model.getId());
+            writeRecord(null);
         }
     }
 }

@@ -25,7 +25,6 @@ public abstract class ConsoleView implements View {
             try {
                 s = bufferedReader.readLine();
             } catch (IOException e) {
-                e.printStackTrace();
                 System.out.println("Failed to read Line.");
                 s = null;
             }
@@ -33,6 +32,23 @@ public abstract class ConsoleView implements View {
         while (s == null);
 
         return s;
+    }
+
+    protected int getUserIntInput(){
+        int intInput = 0;
+        boolean isInt = false;
+        do {
+            String input = getUserInput();
+            try {
+                intInput = Integer.parseInt(input);
+                isInt = true;
+            } catch (NumberFormatException e) {
+                System.out.println("Incorrect number input.");
+            }
+
+        } while (! isInt);
+
+        return intInput;
     }
 
     private void handleInput() {

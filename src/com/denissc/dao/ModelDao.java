@@ -8,11 +8,13 @@ import java.util.Set;
 public interface ModelDao<E> {
     Set<E> findAll();
 
-    boolean create(E model);
+    void create(E model);
 
-    boolean update(E model);
+    void update(E model);
 
     E findById(int id);
 
-    boolean delete(E model);
+    void delete(E model);
+
+    Set<E> findWhere(ModelCondition<E> condition);
 }

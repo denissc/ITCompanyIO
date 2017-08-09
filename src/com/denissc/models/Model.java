@@ -1,3 +1,5 @@
 package com.denissc.models;
 
-public interface Model {}
+public interface Model {
+    int getId();
+}

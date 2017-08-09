@@ -1,39 +1,45 @@
 package com.denissc.controllers;
 
 import com.denissc.dao.CompanyDao;
+import com.denissc.dao.CustomerDao;
 import com.denissc.models.Company;
-import com.denissc.models.Model;
+import com.denissc.models.Customer;
 
 import java.util.Set;
 
 /**
  * Created by denissc on 05.08.17.
  */
-public class CompanyController implements ConsoleController{
+public class CompanyController implements ConsoleController<Company>{
+
     CompanyDao companyDao = new CompanyDao();
 
     @Override
-    public Set<Model> findAll() {
+    public Set<Company> findAll() {
         return companyDao.findAll();
     }
 
     @Override
-    public void create(Model model) {
+    public void create(Company model) {
         companyDao.create(model);
     }
 
     @Override
-    public void update(Model model) {
+    public void update(Company model) {
         companyDao.update(model);
     }
 
     @Override
-    public Model findById(int id) {
+    public Company findById(int id) {
         return companyDao.findById(id);
     }
 
+    public Set<Customer> findCompanyCustomers(Company company) {
+        return companyDao.findCompanyCustomers(company, new CustomerDao());
+    }
+
     @Override
-    public void delete(Model model) {
+    public void delete(Company model) {
         companyDao.delete(model);
     }
 }

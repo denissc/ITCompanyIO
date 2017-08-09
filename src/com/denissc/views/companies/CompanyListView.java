@@ -1,5 +1,6 @@
 package com.denissc.views.companies;
 
+import com.denissc.models.Company;
 import com.denissc.models.Model;
 import com.denissc.views.ConsoleView;
 import com.denissc.views.MainMenuView;
@@ -9,15 +10,15 @@ import java.util.Set;
 /**
  * Created by denissc on 05.08.17.
  */
-public class CompaniesListView extends CompanyView {
+public class CompanyListView extends CompanyView {
     @Override
     protected void template() {
         System.out.println("Main > Companies");
         System.out.println("Companies List : ");
         System.out.println("\n=====================\n");
-        Set<Model> companiesSet = controller.findAll();
+        Set<Company> companiesSet = controller.findAll();
         if (companiesSet != null) {
-            for (Model company :
+            for (Company company :
                     companiesSet) {
                 System.out.println(company);
             }
@@ -30,30 +31,26 @@ public class CompaniesListView extends CompanyView {
 
     @Override
     protected void processInput(String input) {
-        ConsoleView consoleView = null;
         switch (input) {
             case "1":
-                consoleView = viewFactory.getCreateView();
+                viewFactory.getCreateView().render();
                 break;
             case "2":
-                consoleView = viewFactory.getShowView();
+                viewFactory.getShowView().render();
                 break;
             case "3":
-                consoleView = viewFactory.getEditView();
+                viewFactory.getEditView().render();
                 break;
             case "4":
-                consoleView = viewFactory.getDeleteView();
+                viewFactory.getDeleteView().render();
                 break;
             case "5":
-                consoleView = new MainMenuView();
+                new MainMenuView().render();
             case "quit":
                 break;
             default:
                 render();
 
         }
-
-        if (consoleView != null)
-            consoleView.render();
     }
 }

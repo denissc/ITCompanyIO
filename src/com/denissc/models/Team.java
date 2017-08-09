@@ -8,6 +8,10 @@ public class Team implements Model{
     private int projectId;
     private String name;
 
+    public Team(int id) {
+        this(id,0,"");
+    }
+
     public Team(int id, int projectId, String name) {
         this.id = id;
         this.projectId = projectId;

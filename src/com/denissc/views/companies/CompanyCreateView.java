@@ -16,7 +16,7 @@ public class CompanyCreateView extends CompanyView {
         System.out.println("Inset Company data: ");
         System.out.println("\n======================\n");
         System.out.println("Company ID :");
-        companyId = Integer.parseInt(getUserInput());
+        companyId = getUserIntInput();
         System.out.println("Company name : ");
         companyName = getUserInput();
         System.out.println("1 - create, 2 - back, 'quit' - for quit");
@@ -30,7 +30,7 @@ public class CompanyCreateView extends CompanyView {
                 render();
                 break;
             case "2":
-                viewFactory.getCreateView().render();
+                viewFactory.getListView().render();
             case "quit":
                 break;
             default:

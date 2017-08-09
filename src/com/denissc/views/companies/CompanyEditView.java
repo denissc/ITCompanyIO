@@ -15,7 +15,7 @@ public class CompanyEditView extends CompanyView {
         System.out.println("Inset Company data: ");
         System.out.println("\n======================\n");
         System.out.println("Company ID :");
-        companyId = Integer.parseInt(getUserInput());
+        companyId = getUserIntInput();
         System.out.println("New company name : ");
         companyName = getUserInput();
         System.out.println("1 - edit, 2 - back, 'quit' - for quit");
@@ -26,6 +26,7 @@ public class CompanyEditView extends CompanyView {
         switch (input) {
             case "1":
                 controller.update(new Company(companyId, companyName));
+                render();
                 break;
             case "2":
                 viewFactory.getListView().render();

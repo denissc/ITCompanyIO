@@ -3,25 +3,36 @@ package com.denissc.controllers;
 import com.denissc.dao.SkillDao;
 import com.denissc.models.Skill;
 
+import java.util.Set;
+
 /**
  * Created by denissc on 05.08.17.
  */
-public class SkillController {
+public class SkillController implements ConsoleController<Skill> {
     SkillDao skillDao = new SkillDao();
-
-    public void create(Skill skill) {
-//        skillDao.create(skill);
+    
+    @Override
+    public Set<Skill> findAll() {
+        return skillDao.findAll();
     }
 
-    public void update(Skill skill) {
-//        skillDao.update(skill);
+    @Override
+    public void create(Skill model) {
+        skillDao.create(model);
     }
 
-    public void edit(Skill skill) {
-//        skillDao.edit(skill);
+    @Override
+    public void update(Skill model) {
+        skillDao.update(model);
     }
 
-    public void delete(Skill skill) {
-//        skillDao.delete(skill);
+    @Override
+    public Skill findById(int id) {
+        return skillDao.findById(id);
+    }
+
+    @Override
+    public void delete(Skill model) {
+        skillDao.delete(model);
     }
 }

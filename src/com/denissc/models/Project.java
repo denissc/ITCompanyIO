@@ -8,6 +8,10 @@ public class Project implements Model{
     private int customerId;
     private String name;
 
+    public Project(int id) {
+        this(id,0,"");
+    }
+
     public Project(int id, int customerId, String name) {
         this.id = id;
         this.customerId = customerId;

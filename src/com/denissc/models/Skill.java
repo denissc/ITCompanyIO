@@ -8,6 +8,10 @@ public class Skill implements Model{
     private int developerId;
     private String name;
 
+    public Skill(int id) {
+        this(id,0,"");
+    }
+
     public Skill(int id, int developerId, String name) {
         this.id = id;
         this.developerId = developerId;

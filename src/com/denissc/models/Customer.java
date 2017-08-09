@@ -1,5 +1,7 @@
 package com.denissc.models;
 
+import java.util.Set;
+
 /**
  * Created by denissc on 05.08.17.
  */
@@ -7,6 +9,10 @@ public class Customer implements Model{
     private int id;
     private int companyId;
     private String name;
+
+    public Customer(int id) {
+        this(id, 0,"");
+    }
 
     public Customer(int id, int companyId, String name) {
         this.id = id;
