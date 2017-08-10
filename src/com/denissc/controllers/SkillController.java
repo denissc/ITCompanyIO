@@ -10,7 +10,7 @@ import java.util.Set;
  */
 public class SkillController implements ConsoleController<Skill> {
     SkillDao skillDao = new SkillDao();
-    
+
     @Override
     public Set<Skill> findAll() {
         return skillDao.findAll();

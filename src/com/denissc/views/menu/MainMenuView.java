@@ -1,23 +1,25 @@
-package com.denissc.views;
+package com.denissc.views.menu;
 
-import com.denissc.views.companies.CompanyCrudViewFactory;
-import com.denissc.views.customers.CustomerCrudViewFactory;
-import com.denissc.views.developers.DeveloperCrudViewFactory;
-import com.denissc.views.projects.ProjectCrudViewFactory;
-import com.denissc.views.skills.SkillCrudViewFactory;
-import com.denissc.views.teams.TeamCrudViewFactory;
+import com.denissc.views.ConsoleViewFactory;
+import com.denissc.views.ConsoleView;
+import com.denissc.views.companies.CompanyViewFactory;
+import com.denissc.views.customers.CustomerViewFactory;
+import com.denissc.views.developers.DeveloperViewFactory;
+import com.denissc.views.projects.ProjectViewFactory;
+import com.denissc.views.skills.SkillViewFactory;
+import com.denissc.views.teams.TeamViewFactory;
 
 /**
  * Created by denissc on 05.08.17.
  */
 public class MainMenuView extends ConsoleView {
 
-    ConsoleCrudViewFactory companyCrudViewFactory = new CompanyCrudViewFactory();
-    ConsoleCrudViewFactory customerCrudViewFactory = new CustomerCrudViewFactory();
-    ConsoleCrudViewFactory projectCrudViewFactory = new ProjectCrudViewFactory();
-    ConsoleCrudViewFactory teamCrudViewFactory = new TeamCrudViewFactory();
-    ConsoleCrudViewFactory developerCrudViewFactory = new DeveloperCrudViewFactory();
-    ConsoleCrudViewFactory skillCrudViewFactory = new SkillCrudViewFactory();
+    ConsoleViewFactory companyCrudViewFactory = new CompanyViewFactory();
+    ConsoleViewFactory customerCrudViewFactory = new CustomerViewFactory();
+    ConsoleViewFactory projectCrudViewFactory = new ProjectViewFactory();
+    ConsoleViewFactory teamCrudViewFactory = new TeamViewFactory();
+    ConsoleViewFactory developerCrudViewFactory = new DeveloperViewFactory();
+    ConsoleViewFactory skillCrudViewFactory = new SkillViewFactory();
 
     @Override
     public void template() {

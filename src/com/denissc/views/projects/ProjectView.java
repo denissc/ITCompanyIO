@@ -1,7 +1,7 @@
 package com.denissc.views.projects;
 
 import com.denissc.controllers.ProjectController;
-import com.denissc.views.ConsoleCrudViewFactory;
+import com.denissc.views.ConsoleViewFactory;
 import com.denissc.views.ConsoleView;
 
 /**
@@ -9,5 +9,5 @@ import com.denissc.views.ConsoleView;
  */
 public abstract class ProjectView extends ConsoleView {
     ProjectController controller = new ProjectController();
-    ConsoleCrudViewFactory viewFactory = new ProjectCrudViewFactory();
+    ConsoleViewFactory viewFactory = new ProjectViewFactory();
 }

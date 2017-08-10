@@ -1,7 +1,7 @@
 package com.denissc.views.customers;
 
 import com.denissc.controllers.CustomerController;
-import com.denissc.views.ConsoleCrudViewFactory;
+import com.denissc.views.ConsoleViewFactory;
 import com.denissc.views.ConsoleView;
 
 /**
@@ -9,5 +9,5 @@ import com.denissc.views.ConsoleView;
  */
 public abstract class CustomerView extends ConsoleView {
     CustomerController controller = new CustomerController();
-    ConsoleCrudViewFactory viewFactory = new CustomerCrudViewFactory();
+    ConsoleViewFactory viewFactory = new CustomerViewFactory();
 }

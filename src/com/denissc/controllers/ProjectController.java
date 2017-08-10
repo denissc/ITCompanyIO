@@ -10,7 +10,7 @@ import java.util.Set;
 /**
  * Created by denissc on 05.08.17.
  */
-public class ProjectController implements ConsoleController<Project>{
+public class ProjectController implements ConsoleController<Project> {
     ProjectDao projectDao = new ProjectDao();
     @Override
     public Set<Project> findAll() {

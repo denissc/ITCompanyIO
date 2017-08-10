@@ -1,6 +1,7 @@
 package com.denissc.views;
 
-import com.denissc.controllers.ConsoleController;
+import com.denissc.controllers.MainController;
+import com.denissc.views.menu.MenuViewFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,6 +11,7 @@ import java.io.InputStreamReader;
  * Created by denissc on 05.08.17.
  */
 public abstract class ConsoleView implements View {
+    protected MenuViewFactory menuViewFactory = new MenuViewFactory();
     private BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
     public void render() {

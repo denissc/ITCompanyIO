@@ -1,12 +1,12 @@
 package com.denissc.views.projects;
 
-import com.denissc.views.ConsoleCrudViewFactory;
+import com.denissc.views.ConsoleViewFactory;
 import com.denissc.views.ConsoleView;
 
 /**
  * Created by denissc on 08.08.17.
  */
-public class ProjectCrudViewFactory implements ConsoleCrudViewFactory {
+public class ProjectViewFactory implements ConsoleViewFactory {
     @Override
     public ConsoleView getListView() {
         return new ProjectListView();

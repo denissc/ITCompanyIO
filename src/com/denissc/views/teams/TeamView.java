@@ -8,5 +8,5 @@ import com.denissc.views.ConsoleView;
  */
 public abstract class TeamView extends ConsoleView {
     TeamController controller = new TeamController();
-    TeamCrudViewFactory viewFactory = new TeamCrudViewFactory();
+    TeamViewFactory viewFactory = new TeamViewFactory();
 }

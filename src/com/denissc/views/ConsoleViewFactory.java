@@ -3,7 +3,7 @@ package com.denissc.views;
 /**
  * Created by denissc on 06.08.17.
  */
-public interface ConsoleCrudViewFactory {
+public interface ConsoleViewFactory {
     ConsoleView getListView();
     ConsoleView getCreateView();
     ConsoleView getEditView();

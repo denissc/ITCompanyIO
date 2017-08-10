@@ -1,9 +1,7 @@
 package com.denissc.views.companies;
 
 import com.denissc.controllers.CompanyController;
-import com.denissc.controllers.ConsoleController;
-import com.denissc.models.Company;
-import com.denissc.views.ConsoleCrudViewFactory;
+import com.denissc.views.ConsoleViewFactory;
 import com.denissc.views.ConsoleView;
 
 /**
@@ -12,5 +10,5 @@ import com.denissc.views.ConsoleView;
 public abstract class CompanyView extends ConsoleView {
     CompanyController controller = new CompanyController();
 
-    ConsoleCrudViewFactory viewFactory = new CompanyCrudViewFactory();
+    ConsoleViewFactory viewFactory = new CompanyViewFactory();
 }

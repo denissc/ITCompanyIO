@@ -1,35 +1,34 @@
 package com.denissc.views.companies;
 
-import com.denissc.views.ConsoleCrudViewFactory;
-import com.denissc.views.ConsoleView;
+import com.denissc.views.ConsoleViewFactory;
 
 /**
  * Created by denissc on 06.08.17.
  */
-public class CompanyCrudViewFactory implements ConsoleCrudViewFactory {
+public class CompanyViewFactory implements ConsoleViewFactory {
 
     @Override
-    public ConsoleView getListView() {
+    public CompanyView getListView() {
         return new CompanyListView();
     }
 
     @Override
-    public ConsoleView getCreateView() {
+    public CompanyView getCreateView() {
         return new CompanyCreateView();
     }
 
     @Override
-    public ConsoleView getEditView() {
+    public CompanyView getEditView() {
         return new CompanyEditView();
     }
 
     @Override
-    public ConsoleView getDeleteView() {
+    public CompanyView getDeleteView() {
         return new CompanyDeleteView();
     }
 
     @Override
-    public ConsoleView getShowView() {
+    public CompanyView getShowView() {
         return new CompanyShowView();
     }
 }

@@ -1,7 +1,7 @@
 package com.denissc.views.teams;
 
 import com.denissc.models.Team;
-import com.denissc.views.MainMenuView;
+import com.denissc.views.menu.MainMenuView;
 
 import java.util.Set;
 
@@ -42,7 +42,7 @@ public class TeamListView extends TeamView {
                 viewFactory.getDeleteView().render();
                 break;
             case "5":
-                new MainMenuView().render();
+                menuViewFactory.getMenuView().render();
             case "quit":
                 break;
             default:

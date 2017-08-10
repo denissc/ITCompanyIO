@@ -10,7 +10,7 @@ import java.util.Set;
 /**
  * Created by denissc on 05.08.17.
  */
-public class CompanyController implements ConsoleController<Company>{
+public class CompanyController implements ConsoleController<Company> {
 
     CompanyDao companyDao = new CompanyDao();
 

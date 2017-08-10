@@ -1,34 +1,34 @@
 package com.denissc.views.customers;
 
-import com.denissc.views.ConsoleCrudViewFactory;
+import com.denissc.views.ConsoleViewFactory;
 import com.denissc.views.ConsoleView;
 
 /**
  * Created by denissc on 08.08.17.
  */
-public class CustomerCrudViewFactory implements ConsoleCrudViewFactory {
+public class CustomerViewFactory implements ConsoleViewFactory {
     @Override
-    public ConsoleView getListView() {
+    public CustomerView getListView() {
         return new CustomerListView();
     }
 
     @Override
-    public ConsoleView getCreateView() {
+    public CustomerView getCreateView() {
         return new CustomerCreateView();
     }
 
     @Override
-    public ConsoleView getEditView() {
+    public CustomerView getEditView() {
         return new CustomerEditView();
     }
 
     @Override
-    public ConsoleView getDeleteView() {
+    public CustomerView getDeleteView() {
         return new CustomerDeleteView();
     }
 
     @Override
-    public ConsoleView getShowView() {
+    public CustomerView getShowView() {
         return new CustomerShowView();
     }
 }

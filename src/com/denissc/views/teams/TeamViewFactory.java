@@ -1,12 +1,11 @@
 package com.denissc.views.teams;
 
-import com.denissc.views.ConsoleCrudViewFactory;
-import com.denissc.views.ConsoleView;
+import com.denissc.views.ConsoleViewFactory;
 
 /**
  * Created by denissc on 08.08.17.
  */
-public class TeamCrudViewFactory implements ConsoleCrudViewFactory {
+public class TeamViewFactory implements ConsoleViewFactory {
     @Override
     public TeamView getListView() {
         return new TeamListView();

@@ -1,7 +1,6 @@
 package com.denissc.controllers;
 
 import com.denissc.dao.CustomerDao;
-import com.denissc.dao.ModelDao;
 import com.denissc.dao.ProjectDao;
 import com.denissc.models.Customer;
 import com.denissc.models.Project;

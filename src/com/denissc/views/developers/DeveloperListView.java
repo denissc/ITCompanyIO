@@ -1,26 +1,25 @@
-package com.denissc.views.projects;
+package com.denissc.views.developers;
 
-import com.denissc.models.Project;
-import com.denissc.views.menu.MainMenuView;
+import com.denissc.models.Developer;
 
 import java.util.Set;
 
 /**
- * Created by denissc on 09.08.17.
+ * Created by denissc on 10.08.17.
  */
-public class ProjectListView extends ProjectView{
+public class DeveloperListView extends DeveloperView {
     protected void template() {
-        System.out.println("Main > Projects");
-        System.out.println("Project List : ");
+        System.out.println("Main > Developers");
+        System.out.println("Developers List : ");
         System.out.println("\n=====================\n");
-        Set<Project> projects = controller.findAll();
-        if (projects != null) {
-            for (Project project :
-                    projects) {
-                System.out.println(project);
+        Set<Developer> developers = controller.findAll();
+        if (developers != null) {
+            for (Developer developer :
+                    developers) {
+                System.out.println(developer);
             }
         } else {
-            System.out.println("No projects found here yet.");
+            System.out.println("No developers found here yet.");
         }
 
         System.out.println("1 - create, 2 - show, 3 - edit, 4 - delete, 5 - back, 'quit' - for quit");

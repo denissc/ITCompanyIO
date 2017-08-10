@@ -1,9 +1,7 @@
 package com.denissc.views.companies;
 
 import com.denissc.models.Company;
-import com.denissc.models.Model;
-import com.denissc.views.ConsoleView;
-import com.denissc.views.MainMenuView;
+import com.denissc.views.menu.MainMenuView;
 
 import java.util.Set;
 
@@ -45,7 +43,7 @@ public class CompanyListView extends CompanyView {
                 viewFactory.getDeleteView().render();
                 break;
             case "5":
-                new MainMenuView().render();
+                menuViewFactory.getMenuView().render();
             case "quit":
                 break;
             default:
