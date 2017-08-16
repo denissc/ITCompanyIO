@@ -3,7 +3,7 @@ package com.denissc.views.skills;
 import com.denissc.models.Skill;
 
 /**
- * Created by denissc on 10.08.17.
+ * Handles edit skill logic
  */
 public class SkillEditView extends SkillView {
     private int id;
@@ -21,6 +21,7 @@ public class SkillEditView extends SkillView {
         developerId = getUserIntInput();
         System.out.println("New skill name : ");
         name = getUserInput();
+        System.out.println("\n=====================\n");
         System.out.println("1 - edit, 2 - back, 'quit' - for quit");
     }
 
@@ -29,15 +30,15 @@ public class SkillEditView extends SkillView {
         switch (input) {
             case "1":
                 controller.update(new Skill(id, developerId, name));
-                render();
+                setNextView(this);
                 break;
             case "2":
-                viewFactory.getListView().render();
+                setNextView(skillViewFactory.getListView());
                 break;
             case "quit":
                 break;
             default:
-                render();
+                setNextView(this);
         }
     }
 }

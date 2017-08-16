@@ -1,6 +1,5 @@
 package com.denissc.dao;
 
-import com.denissc.models.Model;
 import com.denissc.models.Project;
 import com.denissc.models.Team;
 
@@ -8,9 +7,6 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.util.Set;
 
-/**
- * Created by denissc on 05.08.17.
- */
 public class ProjectDao extends JavaIOModelDAOImpl<Project> {
     @Override
     String getFileName() {
@@ -72,7 +68,7 @@ public class ProjectDao extends JavaIOModelDAOImpl<Project> {
         return 2 * Integer.BYTES + (Character.BYTES * STRING_LENGTH);
     }
 
-    public Set<Team> findProjectTeams(Project project, ModelDao<Team> projectModelDao) {
-        return projectModelDao.findWhere((Team team) -> team.getProjectId() == project.getId());
+    public Set<Team> findProjectTeams(Project project, ModelDao<Team> teamModelDao) {
+        return teamModelDao.findWhere((Team team) -> team.getProjectId() == project.getId());
     }
 }

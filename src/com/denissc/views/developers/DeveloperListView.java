@@ -5,7 +5,7 @@ import com.denissc.models.Developer;
 import java.util.Set;
 
 /**
- * Created by denissc on 10.08.17.
+ * Displays developer list
  */
 public class DeveloperListView extends DeveloperView {
     protected void template() {
@@ -13,7 +13,7 @@ public class DeveloperListView extends DeveloperView {
         System.out.println("Developers List : ");
         System.out.println("\n=====================\n");
         Set<Developer> developers = controller.findAll();
-        if (developers != null) {
+        if (developers.size() > 0) {
             for (Developer developer :
                     developers) {
                 System.out.println(developer);
@@ -21,7 +21,7 @@ public class DeveloperListView extends DeveloperView {
         } else {
             System.out.println("No developers found here yet.");
         }
-
+        System.out.println("\n=====================\n");
         System.out.println("1 - create, 2 - show, 3 - edit, 4 - delete, 5 - back, 'quit' - for quit");
     }
 
@@ -29,23 +29,23 @@ public class DeveloperListView extends DeveloperView {
     protected void processInput(String input) {
         switch (input) {
             case "1":
-                viewFactory.getCreateView().render();
+                setNextView(developerViewFactory.getCreateView());
                 break;
             case "2":
-                viewFactory.getShowView().render();
+                setNextView(developerViewFactory.getShowView());
                 break;
             case "3":
-                viewFactory.getEditView().render();
+                setNextView(developerViewFactory.getEditView());
                 break;
             case "4":
-                viewFactory.getDeleteView().render();
+                setNextView(developerViewFactory.getDeleteView());
                 break;
             case "5":
-                menuViewFactory.getMenuView().render();
+                setNextView(developerViewFactory.getMenuView());
             case "quit":
                 break;
             default:
-                render();
+                setNextView(this);
 
         }
     }

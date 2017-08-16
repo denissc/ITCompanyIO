@@ -1,11 +1,12 @@
 package com.denissc.views.teams;
 
 import com.denissc.views.ConsoleViewFactory;
+import com.denissc.views.menu.MenuViewFactory;
 
 /**
- * Created by denissc on 08.08.17.
+ * Creates team views
  */
-public class TeamViewFactory implements ConsoleViewFactory {
+public class TeamViewFactory extends MenuViewFactory implements ConsoleViewFactory {
     @Override
     public TeamView getListView() {
         return new TeamListView();

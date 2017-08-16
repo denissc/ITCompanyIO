@@ -1,34 +1,34 @@
 package com.denissc.views.projects;
 
 import com.denissc.views.ConsoleViewFactory;
-import com.denissc.views.ConsoleView;
+import com.denissc.views.menu.MenuViewFactory;
 
 /**
- * Created by denissc on 08.08.17.
+ * Creates project views
  */
-public class ProjectViewFactory implements ConsoleViewFactory {
+public class ProjectViewFactory extends MenuViewFactory implements ConsoleViewFactory {
     @Override
-    public ConsoleView getListView() {
+    public ProjectView getListView() {
         return new ProjectListView();
     }
 
     @Override
-    public ConsoleView getCreateView() {
+    public ProjectView getCreateView() {
         return new ProjectCreateView();
     }
 
     @Override
-    public ConsoleView getEditView() {
+    public ProjectView getEditView() {
         return new ProjectEditView();
     }
 
     @Override
-    public ConsoleView getDeleteView() {
+    public ProjectView getDeleteView() {
         return new ProjectDeleteView();
     }
 
     @Override
-    public ConsoleView getShowView() {
+    public ProjectView getShowView() {
         return new ProjectShowView();
     }
 }

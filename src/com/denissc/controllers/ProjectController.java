@@ -7,9 +7,6 @@ import com.denissc.models.Team;
 
 import java.util.Set;
 
-/**
- * Created by denissc on 05.08.17.
- */
 public class ProjectController implements ConsoleController<Project> {
     ProjectDao projectDao = new ProjectDao();
     @Override

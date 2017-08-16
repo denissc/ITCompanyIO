@@ -1,12 +1,12 @@
 package com.denissc.views.developers;
 
 import com.denissc.views.ConsoleViewFactory;
-import com.denissc.views.ConsoleView;
+import com.denissc.views.menu.MenuViewFactory;
 
 /**
- * Created by denissc on 08.08.17.
+ * Creates developer views
  */
-public class DeveloperViewFactory implements ConsoleViewFactory {
+public class DeveloperViewFactory extends MenuViewFactory implements ConsoleViewFactory {
     @Override
     public DeveloperView getListView() {
         return new DeveloperListView();

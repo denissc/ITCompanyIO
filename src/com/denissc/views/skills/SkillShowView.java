@@ -3,7 +3,7 @@ package com.denissc.views.skills;
 import com.denissc.models.Skill;
 
 /**
- * Created by denissc on 10.08.17.
+ * Displays skill data to console
  */
 public class SkillShowView extends SkillView {
     @Override
@@ -15,6 +15,7 @@ public class SkillShowView extends SkillView {
         Skill project = controller.findById(skillId);
         System.out.println("Skill : ");
         System.out.println(project);
+        System.out.println("\n=====================\n");
         System.out.println("1 - show, 2 - back, 'quit' - for quit");
     }
 
@@ -22,15 +23,15 @@ public class SkillShowView extends SkillView {
     protected void processInput(String input) {
         switch (input){
             case "1":
-                render();
+                setNextView(this);
                 break;
             case "2":
-                viewFactory.getListView().render();
+                setNextView(skillViewFactory.getListView());
                 break;
             case "quit":
                 break;
             default:
-                render();
+                setNextView(this);
         }
     }
 }

@@ -1,12 +1,11 @@
 package com.denissc.views.customers;
 
 import com.denissc.models.Customer;
-import com.denissc.views.menu.MainMenuView;
 
 import java.util.Set;
 
 /**
- * Created by denissc on 09.08.17.
+ * Displays customer list
  */
 public class CustomerListView extends CustomerView {
     protected void template() {
@@ -14,7 +13,7 @@ public class CustomerListView extends CustomerView {
         System.out.println("Customers List : ");
         System.out.println("\n=====================\n");
         Set<Customer> customers = controller.findAll();
-        if (customers != null) {
+        if (customers.size() > 0) {
             for (Customer customer :
                     customers) {
                 System.out.println(customer);
@@ -22,7 +21,7 @@ public class CustomerListView extends CustomerView {
         } else {
             System.out.println("No customers found here yet.");
         }
-
+        System.out.println("\n=====================\n");
         System.out.println("1 - create, 2 - show, 3 - edit, 4 - delete, 5 - back, 'quit' - for quit");
     }
 
@@ -30,23 +29,23 @@ public class CustomerListView extends CustomerView {
     protected void processInput(String input) {
         switch (input) {
             case "1":
-                viewFactory.getCreateView().render();
+                setNextView(customerViewFactory.getCreateView());
                 break;
             case "2":
-                viewFactory.getShowView().render();
+                setNextView(customerViewFactory.getShowView());
                 break;
             case "3":
-                viewFactory.getEditView().render();
+                setNextView(customerViewFactory.getEditView());
                 break;
             case "4":
-                viewFactory.getDeleteView().render();
+                setNextView(customerViewFactory.getDeleteView());
                 break;
             case "5":
-                menuViewFactory.getMenuView().render();
+                setNextView(customerViewFactory.getMenuView());
             case "quit":
                 break;
             default:
-                render();
+                setNextView(this);
 
         }
     }

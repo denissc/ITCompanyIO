@@ -7,9 +7,6 @@ import com.denissc.models.Team;
 
 import java.util.Set;
 
-/**
- * Created by denissc on 05.08.17.
- */
 public class TeamController implements ConsoleController<Team> {
     TeamDao teamDao = new TeamDao();
     @Override

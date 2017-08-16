@@ -8,9 +8,6 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.util.Set;
 
-/**
- * Created by denissc on 05.08.17.
- */
 public class DeveloperDao extends JavaIOModelDAOImpl<Developer> {
     @Override
     String getFileName() {
@@ -76,6 +73,12 @@ public class DeveloperDao extends JavaIOModelDAOImpl<Developer> {
         return 2 * Integer.BYTES + ( 2 * (Character.BYTES * STRING_LENGTH));
     }
 
+    /**
+     * Returns developer related skills
+     * @param developer
+     * @param skillModelDao
+     * @return set of skills
+     */
     public Set<Skill> findDeveloperSkills(Developer developer, ModelDao<Skill> skillModelDao) {
         return skillModelDao.findWhere((Skill skill) -> skill.getDeveloperId() == developer.getId());
     }

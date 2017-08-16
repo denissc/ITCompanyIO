@@ -2,12 +2,11 @@ package com.denissc.views.companies;
 
 import com.denissc.models.Company;
 import com.denissc.models.Customer;
-import com.denissc.models.Model;
 
 import java.util.Set;
 
 /**
- * Created by denissc on 05.08.17.
+ * Displays company data
  */
 public class CompanyShowView extends CompanyView {
     private int companyId;
@@ -21,12 +20,15 @@ public class CompanyShowView extends CompanyView {
         Company company = controller.findById(companyId);
         System.out.println("Company : ");
         System.out.println(company);
-        System.out.println("Company Customers : ");
         Set<Customer> customers = controller.findCompanyCustomers(company);
-        for (Customer customer :
-                customers) {
-            System.out.println(customer);
+        if (customers.size() > 0) {
+            System.out.println("Company Customers : ");
+            for (Customer customer :
+                    customers) {
+                System.out.println(customer);
+            }
         }
+        System.out.println("\n=====================\n");
         System.out.println("1 - show, 2 - back, 'quit' - for quit");
     }
 
@@ -34,15 +36,15 @@ public class CompanyShowView extends CompanyView {
     protected void processInput(String input) {
         switch (input){
             case "1":
-                render();
+                setNextView(this);
                 break;
             case "2":
-                viewFactory.getListView().render();
+                setNextView(companyViewFactory.getListView());
                 break;
             case "quit":
                 break;
             default:
-                render();
+                setNextView(this);
         }
     }
 }

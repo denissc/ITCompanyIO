@@ -5,9 +5,6 @@ import com.denissc.models.Skill;
 import java.io.EOFException;
 import java.io.IOException;
 
-/**
- * Created by denissc on 05.08.17.
- */
 public class SkillDao extends JavaIOModelDAOImpl<Skill> {
     @Override
     String getFileName() {

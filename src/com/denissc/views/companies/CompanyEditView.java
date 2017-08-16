@@ -3,7 +3,7 @@ package com.denissc.views.companies;
 import com.denissc.models.Company;
 
 /**
- * Created by denissc on 06.08.17.
+ * Handles edit company process
  */
 public class CompanyEditView extends CompanyView {
     private int companyId;
@@ -18,6 +18,7 @@ public class CompanyEditView extends CompanyView {
         companyId = getUserIntInput();
         System.out.println("New company name : ");
         companyName = getUserInput();
+        System.out.println("\n=====================\n");
         System.out.println("1 - edit, 2 - back, 'quit' - for quit");
     }
 
@@ -26,15 +27,15 @@ public class CompanyEditView extends CompanyView {
         switch (input) {
             case "1":
                 controller.update(new Company(companyId, companyName));
-                render();
+                setNextView(this);
                 break;
             case "2":
-                viewFactory.getListView().render();
+                setNextView(companyViewFactory.getListView());
                 break;
             case "quit":
                 break;
             default:
-                render();
+                setNextView(this);
         }
     }
 }

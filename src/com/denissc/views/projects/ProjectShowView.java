@@ -2,12 +2,11 @@ package com.denissc.views.projects;
 
 import com.denissc.models.Project;
 import com.denissc.models.Team;
-import com.denissc.views.ConsoleView;
 
 import java.util.Set;
 
 /**
- * Created by denissc on 09.08.17.
+ * Displays project data to the console
  */
 public class ProjectShowView extends ProjectView {
     @Override
@@ -19,12 +18,15 @@ public class ProjectShowView extends ProjectView {
         Project project = controller.findById(projectId);
         System.out.println("Project : ");
         System.out.println(project);
-        System.out.println("Project Teams : ");
         Set<Team> teams = controller.findProjectTeams(project);
-        for (Team team :
-                teams) {
-            System.out.println(team);
+        if (teams.size() > 0) {
+            System.out.println("Project Teams : ");
+            for (Team team :
+                    teams) {
+                System.out.println(team);
+            }
         }
+        System.out.println("\n=====================\n");
         System.out.println("1 - show, 2 - back, 'quit' - for quit");
     }
 
@@ -32,15 +34,15 @@ public class ProjectShowView extends ProjectView {
     protected void processInput(String input) {
         switch (input){
             case "1":
-                render();
+                setNextView(this);
                 break;
             case "2":
-                viewFactory.getListView().render();
+                setNextView(projectViewFactory.getListView());
                 break;
             case "quit":
                 break;
             default:
-                render();
+                setNextView(this);
         }
     }
 }

@@ -7,9 +7,6 @@ import com.denissc.models.Project;
 
 import java.util.Set;
 
-/**
- * Created by denissc on 05.08.17.
- */
 public class CustomerController implements ConsoleController<Customer> {
     CustomerDao customerDao = new CustomerDao();
     @Override

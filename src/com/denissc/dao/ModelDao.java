@@ -3,7 +3,7 @@ package com.denissc.dao;
 import java.util.Set;
 
 /**
- * Created by denissc on 05.08.17.
+ * CRUD models data access operations
  */
 public interface ModelDao<E> {
     Set<E> findAll();

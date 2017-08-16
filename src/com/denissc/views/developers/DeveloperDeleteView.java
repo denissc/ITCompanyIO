@@ -1,10 +1,9 @@
 package com.denissc.views.developers;
 
-import com.denissc.models.Customer;
 import com.denissc.models.Developer;
 
 /**
- * Created by denissc on 10.08.17.
+ * Handles delete developer process
  */
 public class DeveloperDeleteView extends DeveloperView {
     private int developerId;
@@ -16,6 +15,7 @@ public class DeveloperDeleteView extends DeveloperView {
         System.out.println("\n======================\n");
         System.out.print("Developer ID :");
         developerId = getUserIntInput();
+        System.out.println("\n=====================\n");
         System.out.println("1 - delete, 2 - back, 'quit' - for quit");
     }
 
@@ -24,14 +24,15 @@ public class DeveloperDeleteView extends DeveloperView {
         switch (input) {
             case "1":
                 controller.delete(new Developer(developerId));
+                setNextView(this);
                 break;
             case "2":
-                viewFactory.getListView().render();
+                setNextView(developerViewFactory.getListView());
                 break;
             case "quit":
                 break;
             default:
-                render();
+                setNextView(this);
 
         }
     }

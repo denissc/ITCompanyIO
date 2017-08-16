@@ -8,9 +8,6 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.util.Set;
 
-/**
- * Created by denissc on 05.08.17.
- */
 public class TeamDao extends JavaIOModelDAOImpl<Team>{
     @Override
     String getFileName() {

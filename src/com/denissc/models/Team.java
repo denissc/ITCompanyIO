@@ -1,7 +1,7 @@
 package com.denissc.models;
 
 /**
- * Created by denissc on 05.08.17.
+ * Team entity
  */
 public class Team implements Model{
     private int id;

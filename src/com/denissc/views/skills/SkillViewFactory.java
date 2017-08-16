@@ -1,12 +1,12 @@
 package com.denissc.views.skills;
 
 import com.denissc.views.ConsoleViewFactory;
-import com.denissc.views.ConsoleView;
+import com.denissc.views.menu.MenuViewFactory;
 
 /**
- * Created by denissc on 08.08.17.
+ * Creates Skill views
  */
-public class SkillViewFactory implements ConsoleViewFactory {
+public class SkillViewFactory extends MenuViewFactory implements ConsoleViewFactory {
     @Override
     public SkillView getListView() {
         return new SkillListView();

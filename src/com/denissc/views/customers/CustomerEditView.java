@@ -3,7 +3,7 @@ package com.denissc.views.customers;
 import com.denissc.models.Customer;
 
 /**
- * Created by denissc on 09.08.17.
+ * Handle edit customer process
  */
 public class CustomerEditView extends CustomerView {
     private int customerId;
@@ -21,6 +21,7 @@ public class CustomerEditView extends CustomerView {
         companyId = getUserIntInput();
         System.out.println("New company name : ");
         customerName = getUserInput();
+        System.out.println("\n=====================\n");
         System.out.println("1 - edit, 2 - back, 'quit' - for quit");
     }
 
@@ -29,15 +30,15 @@ public class CustomerEditView extends CustomerView {
         switch (input) {
             case "1":
                 controller.update(new Customer(customerId, companyId, customerName));
-                render();
+                setNextView(this);
                 break;
             case "2":
-                viewFactory.getListView().render();
+                setNextView(customerViewFactory.getListView());
                 break;
             case "quit":
                 break;
             default:
-                render();
+                setNextView(this);
         }
     }
 }

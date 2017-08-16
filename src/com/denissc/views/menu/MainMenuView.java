@@ -10,20 +10,20 @@ import com.denissc.views.skills.SkillViewFactory;
 import com.denissc.views.teams.TeamViewFactory;
 
 /**
- * Created by denissc on 05.08.17.
+ * Main app view
  */
 public class MainMenuView extends ConsoleView {
 
-    ConsoleViewFactory companyCrudViewFactory = new CompanyViewFactory();
-    ConsoleViewFactory customerCrudViewFactory = new CustomerViewFactory();
-    ConsoleViewFactory projectCrudViewFactory = new ProjectViewFactory();
-    ConsoleViewFactory teamCrudViewFactory = new TeamViewFactory();
-    ConsoleViewFactory developerCrudViewFactory = new DeveloperViewFactory();
-    ConsoleViewFactory skillCrudViewFactory = new SkillViewFactory();
+    private ConsoleViewFactory companyViewFactory = new CompanyViewFactory();
+    private ConsoleViewFactory customerViewFactory = new CustomerViewFactory();
+    private ConsoleViewFactory projectViewFactory = new ProjectViewFactory();
+    private ConsoleViewFactory teamViewFactory = new TeamViewFactory();
+    private ConsoleViewFactory developerViewFactory = new DeveloperViewFactory();
+    private ConsoleViewFactory skillViewFactory = new SkillViewFactory();
 
     @Override
     public void template() {
-        System.out.println("MainMenuView: ");
+        System.out.println("Menu: ");
         System.out.println("\n=====================\n");
         System.out.println("1 - Companies;");
         System.out.println("2 - Customers;");
@@ -38,22 +38,22 @@ public class MainMenuView extends ConsoleView {
     public void processInput(String input) {
         switch (input) {
             case "1":
-                companyCrudViewFactory.getListView().render();
+                companyViewFactory.getListView().render();
                 break;
             case "2":
-                customerCrudViewFactory.getListView().render();
+                customerViewFactory.getListView().render();
                 break;
             case "3":
-                projectCrudViewFactory.getListView().render();
+                projectViewFactory.getListView().render();
                 break;
             case "4":
-                teamCrudViewFactory.getListView().render();
+                teamViewFactory.getListView().render();
                 break;
             case "5":
-                developerCrudViewFactory.getListView().render();
+                developerViewFactory.getListView().render();
                 break;
             case "6":
-                skillCrudViewFactory.getListView().render();
+                skillViewFactory.getListView().render();
                 break;
             case "quit":
                 break;

@@ -1,10 +1,9 @@
 package com.denissc.views.projects;
 
-import com.denissc.models.Customer;
 import com.denissc.models.Project;
 
 /**
- * Created by denissc on 09.08.17.
+ * Handle delete project process
  */
 public class ProjectDeleteView extends ProjectView {
     private int projectId;
@@ -16,6 +15,7 @@ public class ProjectDeleteView extends ProjectView {
         System.out.println("\n======================\n");
         System.out.print("Project ID : ");
         projectId = getUserIntInput();
+        System.out.println("\n=====================\n");
         System.out.println("1 - delete, 2 - back, 'quit' - for quit");
     }
 
@@ -24,14 +24,15 @@ public class ProjectDeleteView extends ProjectView {
         switch (input) {
             case "1":
                 controller.delete(new Project(projectId));
+                setNextView(this);
                 break;
             case "2":
-                viewFactory.getListView().render();
+                setNextView(projectViewFactory.getListView());
                 break;
             case "quit":
                 break;
             default:
-                render();
+                setNextView(this);
 
         }
     }

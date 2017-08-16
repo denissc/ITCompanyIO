@@ -1,12 +1,11 @@
 package com.denissc.views.companies;
 
 import com.denissc.models.Company;
-import com.denissc.views.menu.MainMenuView;
 
 import java.util.Set;
 
 /**
- * Created by denissc on 05.08.17.
+ * Displays company list
  */
 public class CompanyListView extends CompanyView {
     @Override
@@ -14,16 +13,16 @@ public class CompanyListView extends CompanyView {
         System.out.println("Main > Companies");
         System.out.println("Companies List : ");
         System.out.println("\n=====================\n");
-        Set<Company> companiesSet = controller.findAll();
-        if (companiesSet != null) {
+        Set<Company> companies = controller.findAll();
+        if (companies.size() > 0) {
             for (Company company :
-                    companiesSet) {
+                    companies) {
                 System.out.println(company);
             }
         } else {
             System.out.println("No companies found here yet.");
         }
-
+        System.out.println("\n=====================\n");
         System.out.println("1 - create, 2 - show, 3 - edit, 4 - delete, 5 - back, 'quit' - for quit");
     }
 
@@ -31,23 +30,23 @@ public class CompanyListView extends CompanyView {
     protected void processInput(String input) {
         switch (input) {
             case "1":
-                viewFactory.getCreateView().render();
+                setNextView(companyViewFactory.getCreateView());
                 break;
             case "2":
-                viewFactory.getShowView().render();
+                setNextView(companyViewFactory.getShowView());
                 break;
             case "3":
-                viewFactory.getEditView().render();
+                setNextView(companyViewFactory.getEditView());
                 break;
             case "4":
-                viewFactory.getDeleteView().render();
+                setNextView(companyViewFactory.getDeleteView());
                 break;
             case "5":
-                menuViewFactory.getMenuView().render();
+                setNextView(companyViewFactory.getMenuView());
             case "quit":
                 break;
             default:
-                render();
+                setNextView(this);
 
         }
     }

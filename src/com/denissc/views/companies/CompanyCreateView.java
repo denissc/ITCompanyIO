@@ -3,7 +3,7 @@ package com.denissc.views.companies;
 import com.denissc.models.Company;
 
 /**
- * Created by denissc on 05.08.17.
+ * Handle Create company process
  */
 public class CompanyCreateView extends CompanyView {
 
@@ -19,6 +19,7 @@ public class CompanyCreateView extends CompanyView {
         companyId = getUserIntInput();
         System.out.println("Company name : ");
         companyName = getUserInput();
+        System.out.println("\n=====================\n");
         System.out.println("1 - create, 2 - back, 'quit' - for quit");
     }
 
@@ -27,14 +28,14 @@ public class CompanyCreateView extends CompanyView {
         switch (input) {
             case "1":
                 controller.create(new Company(companyId, companyName));
-                render();
+                setNextView(this);
                 break;
             case "2":
-                viewFactory.getListView().render();
+                setNextView(companyViewFactory.getListView());
             case "quit":
                 break;
             default:
-                render();
+                setNextView(this);
         }
     }
 }

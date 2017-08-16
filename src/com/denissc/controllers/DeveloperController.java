@@ -7,9 +7,6 @@ import com.denissc.models.Skill;
 
 import java.util.Set;
 
-/**
- * Created by denissc on 05.08.17.
- */
 public class DeveloperController implements ConsoleController<Developer> {
     DeveloperDao developerDao = new DeveloperDao();
     @Override

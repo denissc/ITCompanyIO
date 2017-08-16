@@ -1,7 +1,7 @@
 package com.denissc.dao;
 
 /**
- * Created by denissc on 09.08.17.
+ * Condition that can be passed or not by a record
  */
 public interface ModelCondition<E> {
     boolean isPassesCondition(E record);

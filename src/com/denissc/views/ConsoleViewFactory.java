@@ -1,7 +1,7 @@
 package com.denissc.views;
 
 /**
- * Created by denissc on 06.08.17.
+ * Console view factory for CRUD operations
  */
 public interface ConsoleViewFactory {
     ConsoleView getListView();

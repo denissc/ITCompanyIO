@@ -3,7 +3,7 @@ package com.denissc.views.developers;
 import com.denissc.models.Developer;
 
 /**
- * Created by denissc on 10.08.17.
+ * Handles create developer process
  */
 public class DeveloperCreateView extends DeveloperView {
     private int developerId;
@@ -24,6 +24,7 @@ public class DeveloperCreateView extends DeveloperView {
         developerName = getUserInput();
         System.out.println("Developer occupation : ");
         developerOccupation = getUserInput();
+        System.out.println("\n=====================\n");
         System.out.println("1 - create, 2 - back, 'quit' - for quit");
     }
 
@@ -32,14 +33,14 @@ public class DeveloperCreateView extends DeveloperView {
         switch (input) {
             case "1":
                 controller.create(new Developer(developerId, teamId, developerName, developerOccupation));
-                render();
+                setNextView(this);
                 break;
             case "2":
-                viewFactory.getListView().render();
+                setNextView(developerViewFactory.getListView());
             case "quit":
                 break;
             default:
-                render();
+                setNextView(this);
         }
     }
 }

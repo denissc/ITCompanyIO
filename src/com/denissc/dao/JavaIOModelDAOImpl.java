@@ -21,13 +21,25 @@ public abstract class JavaIOModelDAOImpl<E> implements ModelDao<E>{
             System.out.println("(FATAL) File not found.");
         }
     }
+
+    /**
+     * Returns full storage file path
+     * @return storage file path
+     */
     private String getFullFilePath(){
         return filePath + getFileName();
     }
 
-
+    /**
+     * Returns storage file name
+     * @return storage file name
+     */
     abstract String getFileName();
 
+    /**
+     * Finds all records written to the file
+     * @return set of records
+     */
     @Override
     public Set<E> findAll() {
         Set<E> records = new HashSet<>();
@@ -35,7 +47,9 @@ public abstract class JavaIOModelDAOImpl<E> implements ModelDao<E>{
             long recordsAmount = file.length() / getModelEntitySize();
             for (long i = 1; i <= recordsAmount;i++ ) {
                 seekRecord(i);
-                records.add(readRecord());
+                E record = readRecord();
+                if (record != null)
+                    records.add(record);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -43,6 +57,11 @@ public abstract class JavaIOModelDAOImpl<E> implements ModelDao<E>{
         return records;
     }
 
+    /**
+     * Finds all records written to the file by condition
+     * @param condition record condition
+     * @return set of records
+     */
     @Override
     public Set<E> findWhere(ModelCondition<E> condition) {
         Set<E> records = new HashSet<>();
@@ -51,7 +70,7 @@ public abstract class JavaIOModelDAOImpl<E> implements ModelDao<E>{
             for (long i = 1; i <= recordsAmount;i++ ) {
                 seekRecord(i);
                 E record = readRecord();
-                if (condition.isPassesCondition(record)) {
+                if (record != null && condition.isPassesCondition(record)) {
                     records.add(record);
                 }
             }
@@ -79,6 +98,10 @@ public abstract class JavaIOModelDAOImpl<E> implements ModelDao<E>{
         return record;
     }
 
+    /**
+     * Reads record from file
+     * @return record
+     */
     abstract E readRecord();
 
     /**
@@ -115,6 +138,10 @@ public abstract class JavaIOModelDAOImpl<E> implements ModelDao<E>{
         }
     }
 
+    /**
+     * Writes record to the file
+     * @param record record that will be written
+     */
     abstract void writeRecord(E record);
 
     /**
@@ -161,6 +188,10 @@ public abstract class JavaIOModelDAOImpl<E> implements ModelDao<E>{
         return success;
     }
 
+    /**
+     * Return model/record entity size that will be stored in the file
+     * @return size of record entity
+     */
     abstract int getModelEntitySize();
 
     /**

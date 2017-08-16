@@ -3,7 +3,7 @@ package com.denissc.views.teams;
 import com.denissc.models.Team;
 
 /**
- * Created by denissc on 09.08.17.
+ * Team delete view template
  */
 public class TeamDeleteView extends TeamView {
     private int teamId;
@@ -15,6 +15,7 @@ public class TeamDeleteView extends TeamView {
         System.out.println("\n======================\n");
         System.out.print("Team ID : ");
         teamId = getUserIntInput();
+        System.out.println("\n=====================\n");
         System.out.println("1 - delete, 2 - back, 'quit' - for quit");
     }
 
@@ -23,14 +24,15 @@ public class TeamDeleteView extends TeamView {
         switch (input) {
             case "1":
                 controller.delete(new Team(teamId));
+                setNextView(this);
                 break;
             case "2":
-                viewFactory.getListView().render();
+                setNextView(teamViewFactory.getListView());
                 break;
             case "quit":
                 break;
             default:
-                render();
+                setNextView(this);
 
         }
     }

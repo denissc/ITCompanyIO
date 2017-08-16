@@ -1,10 +1,9 @@
 package com.denissc.views.projects;
 
-import com.denissc.models.Customer;
 import com.denissc.models.Project;
 
 /**
- * Created by denissc on 09.08.17.
+ * Handles edit project process
  */
 public class ProjectEditView extends ProjectView {
     private int projectId;
@@ -22,6 +21,7 @@ public class ProjectEditView extends ProjectView {
         customerId = getUserIntInput();
         System.out.println("New project name : ");
         projectName = getUserInput();
+        System.out.println("\n=====================\n");
         System.out.println("1 - edit, 2 - back, 'quit' - for quit");
     }
 
@@ -30,15 +30,15 @@ public class ProjectEditView extends ProjectView {
         switch (input) {
             case "1":
                 controller.update(new Project(projectId, customerId, projectName));
-                render();
+                setNextView(this);
                 break;
             case "2":
-                viewFactory.getListView().render();
+                setNextView(projectViewFactory.getListView());
                 break;
             case "quit":
                 break;
             default:
-                render();
+                setNextView(this);
         }
     }
 }

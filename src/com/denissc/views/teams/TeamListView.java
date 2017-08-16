@@ -1,28 +1,27 @@
 package com.denissc.views.teams;
 
 import com.denissc.models.Team;
-import com.denissc.views.menu.MainMenuView;
 
 import java.util.Set;
 
 /**
- * Created by denissc on 09.08.17.
+ * Displays team list
  */
 public class TeamListView extends TeamView {
     protected void template() {
         System.out.println("Main > Teams");
         System.out.println("Team List : ");
         System.out.println("\n=====================\n");
-        Set<Team> projects = controller.findAll();
-        if (projects != null) {
-            for (Team project :
-                    projects) {
-                System.out.println(project);
+        Set<Team> teams = controller.findAll();
+        if (teams.size() > 0) {
+            for (Team team :
+                    teams) {
+                System.out.println(team);
             }
         } else {
             System.out.println("No teams found here yet.");
         }
-
+        System.out.println("\n=====================\n");
         System.out.println("1 - create, 2 - show, 3 - edit, 4 - delete, 5 - back, 'quit' - for quit");
     }
 
@@ -30,23 +29,23 @@ public class TeamListView extends TeamView {
     protected void processInput(String input) {
         switch (input) {
             case "1":
-                viewFactory.getCreateView().render();
+                setNextView(teamViewFactory.getCreateView());
                 break;
             case "2":
-                viewFactory.getShowView().render();
+                setNextView(teamViewFactory.getShowView());
                 break;
             case "3":
-                viewFactory.getEditView().render();
+                setNextView(teamViewFactory.getEditView());
                 break;
             case "4":
-                viewFactory.getDeleteView().render();
+                setNextView(teamViewFactory.getDeleteView());
                 break;
             case "5":
-                menuViewFactory.getMenuView().render();
+                setNextView(teamViewFactory.getMenuView());
             case "quit":
                 break;
             default:
-                render();
+                setNextView(this);
 
         }
     }

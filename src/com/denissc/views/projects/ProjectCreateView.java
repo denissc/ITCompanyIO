@@ -3,7 +3,7 @@ package com.denissc.views.projects;
 import com.denissc.models.Project;
 
 /**
- * Created by denissc on 09.08.17.
+ * Handle create project process
  */
 public class ProjectCreateView extends ProjectView {
     private int projectId;
@@ -21,6 +21,7 @@ public class ProjectCreateView extends ProjectView {
         customerId = getUserIntInput();
         System.out.println("Project name : ");
         projectName = getUserInput();
+        System.out.println("\n=====================\n");
         System.out.println("1 - create, 2 - back, 'quit' - for quit");
     }
 
@@ -29,14 +30,14 @@ public class ProjectCreateView extends ProjectView {
         switch (input) {
             case "1":
                 controller.create(new Project(projectId, customerId, projectName));
-                render();
+                setNextView(this);
                 break;
             case "2":
-                viewFactory.getListView().render();
+                setNextView(projectViewFactory.getListView());
             case "quit":
                 break;
             default:
-                render();
+                setNextView(this);
         }
     }
 }

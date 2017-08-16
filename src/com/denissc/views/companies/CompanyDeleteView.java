@@ -3,7 +3,7 @@ package com.denissc.views.companies;
 import com.denissc.models.Company;
 
 /**
- * Created by denissc on 05.08.17.
+ * Handles delete company process
  */
 public class CompanyDeleteView extends CompanyView {
     private int companyId;
@@ -15,6 +15,7 @@ public class CompanyDeleteView extends CompanyView {
         System.out.println("\n======================\n");
         System.out.println("Company ID :");
         companyId = getUserIntInput();
+        System.out.println("\n=====================\n");
         System.out.println("1 - delete, 2 - back, 'quit' - for quit");
     }
 
@@ -23,14 +24,15 @@ public class CompanyDeleteView extends CompanyView {
         switch (input) {
             case "1":
                 controller.delete(new Company(companyId));
+                setNextView(this);
                 break;
             case "2":
-                viewFactory.getListView().render();
+                setNextView(companyViewFactory.getListView());
                 break;
             case "quit":
                 break;
             default:
-                render();
+                setNextView(this);
 
         }
     }

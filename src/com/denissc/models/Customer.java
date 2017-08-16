@@ -1,9 +1,7 @@
 package com.denissc.models;
 
-import java.util.Set;
-
 /**
- * Created by denissc on 05.08.17.
+ * Customer entity
  */
 public class Customer implements Model{
     private int id;

@@ -2,11 +2,12 @@ package com.denissc.views.customers;
 
 import com.denissc.views.ConsoleViewFactory;
 import com.denissc.views.ConsoleView;
+import com.denissc.views.menu.MenuViewFactory;
 
 /**
- * Created by denissc on 08.08.17.
+ * Creates customer views
  */
-public class CustomerViewFactory implements ConsoleViewFactory {
+public class CustomerViewFactory extends MenuViewFactory implements ConsoleViewFactory {
     @Override
     public CustomerView getListView() {
         return new CustomerListView();

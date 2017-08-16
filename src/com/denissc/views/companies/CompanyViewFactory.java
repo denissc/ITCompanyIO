@@ -1,11 +1,12 @@
 package com.denissc.views.companies;
 
 import com.denissc.views.ConsoleViewFactory;
+import com.denissc.views.menu.MenuViewFactory;
 
 /**
- * Created by denissc on 06.08.17.
+ * Creates company views
  */
-public class CompanyViewFactory implements ConsoleViewFactory {
+public class CompanyViewFactory extends MenuViewFactory implements ConsoleViewFactory {
 
     @Override
     public CompanyView getListView() {

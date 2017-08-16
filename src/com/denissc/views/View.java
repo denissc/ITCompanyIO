@@ -1,7 +1,7 @@
 package com.denissc.views;
 
 /**
- * Created by denissc on 05.08.17.
+ * View that can be rendered
  */
 public interface View {
     void render();

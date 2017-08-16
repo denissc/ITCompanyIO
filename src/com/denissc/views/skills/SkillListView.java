@@ -5,7 +5,7 @@ import com.denissc.models.Skill;
 import java.util.Set;
 
 /**
- * Created by denissc on 10.08.17.
+ * Displays skill list
  */
 public class SkillListView extends SkillView {
     protected void template() {
@@ -13,7 +13,7 @@ public class SkillListView extends SkillView {
         System.out.println("Skill List : ");
         System.out.println("\n=====================\n");
         Set<Skill> skills = controller.findAll();
-        if (skills != null) {
+        if (skills.size() > 0) {
             for (Skill project :
                     skills) {
                 System.out.println(project);
@@ -21,7 +21,7 @@ public class SkillListView extends SkillView {
         } else {
             System.out.println("No skills found here yet.");
         }
-
+        System.out.println("\n=====================\n");
         System.out.println("1 - create, 2 - show, 3 - edit, 4 - delete, 5 - back, 'quit' - for quit");
     }
 
@@ -29,23 +29,23 @@ public class SkillListView extends SkillView {
     protected void processInput(String input) {
         switch (input) {
             case "1":
-                viewFactory.getCreateView().render();
+                setNextView(skillViewFactory.getCreateView());
                 break;
             case "2":
-                viewFactory.getShowView().render();
+                setNextView(skillViewFactory.getShowView());
                 break;
             case "3":
-                viewFactory.getEditView().render();
+                setNextView(skillViewFactory.getEditView());
                 break;
             case "4":
-                viewFactory.getDeleteView().render();
+                setNextView(skillViewFactory.getDeleteView());
                 break;
             case "5":
-                menuViewFactory.getMenuView().render();
+                setNextView(skillViewFactory.getMenuView());
             case "quit":
                 break;
             default:
-                render();
+                setNextView(this);
 
         }
     }

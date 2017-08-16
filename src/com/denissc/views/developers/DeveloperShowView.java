@@ -6,7 +6,7 @@ import com.denissc.models.Skill;
 import java.util.Set;
 
 /**
- * Created by denissc on 10.08.17.
+ * Displays developer data
  */
 public class DeveloperShowView extends DeveloperView {
 
@@ -19,13 +19,14 @@ public class DeveloperShowView extends DeveloperView {
         Developer developer = controller.findById(customerId);
         System.out.println("Developer : ");
         System.out.println(developer);
-        System.out.println("Developer Skills : ");
         Set<Skill> skills = controller.findDeveloperSkills(developer);
-        if (skills != null) {
+        if (skills.size() > 0) {
+            System.out.println("Developer Skills : ");
             for (Skill skill : skills) {
                 System.out.println(skill);
             }
         }
+        System.out.println("\n=====================\n");
         System.out.println("1 - show, 2 - back, 'quit' - for quit");
     }
 
@@ -33,15 +34,15 @@ public class DeveloperShowView extends DeveloperView {
     protected void processInput(String input) {
         switch (input){
             case "1":
-                render();
+                setNextView(this);
                 break;
             case "2":
-                viewFactory.getListView().render();
+                setNextView(developerViewFactory.getListView());
                 break;
             case "quit":
                 break;
             default:
-                render();
+                setNextView(this);
         }
     }
 }

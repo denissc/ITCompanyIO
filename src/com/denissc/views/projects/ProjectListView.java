@@ -1,12 +1,11 @@
 package com.denissc.views.projects;
 
 import com.denissc.models.Project;
-import com.denissc.views.menu.MainMenuView;
 
 import java.util.Set;
 
 /**
- * Created by denissc on 09.08.17.
+ * Displays project list
  */
 public class ProjectListView extends ProjectView{
     protected void template() {
@@ -14,7 +13,7 @@ public class ProjectListView extends ProjectView{
         System.out.println("Project List : ");
         System.out.println("\n=====================\n");
         Set<Project> projects = controller.findAll();
-        if (projects != null) {
+        if (projects.size() > 0) {
             for (Project project :
                     projects) {
                 System.out.println(project);
@@ -23,6 +22,7 @@ public class ProjectListView extends ProjectView{
             System.out.println("No projects found here yet.");
         }
 
+        System.out.println("\n=====================\n");
         System.out.println("1 - create, 2 - show, 3 - edit, 4 - delete, 5 - back, 'quit' - for quit");
     }
 
@@ -30,23 +30,23 @@ public class ProjectListView extends ProjectView{
     protected void processInput(String input) {
         switch (input) {
             case "1":
-                viewFactory.getCreateView().render();
+                setNextView(projectViewFactory.getCreateView());
                 break;
             case "2":
-                viewFactory.getShowView().render();
+                setNextView(projectViewFactory.getShowView());
                 break;
             case "3":
-                viewFactory.getEditView().render();
+                setNextView(projectViewFactory.getEditView());
                 break;
             case "4":
-                viewFactory.getDeleteView().render();
+                setNextView(projectViewFactory.getDeleteView());
                 break;
             case "5":
-                menuViewFactory.getMenuView().render();
+                setNextView(projectViewFactory.getMenuView());
             case "quit":
                 break;
             default:
-                render();
+                setNextView(this);
 
         }
     }

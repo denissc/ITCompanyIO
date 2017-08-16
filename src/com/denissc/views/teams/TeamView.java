@@ -4,9 +4,9 @@ import com.denissc.controllers.TeamController;
 import com.denissc.views.ConsoleView;
 
 /**
- * Created by denissc on 09.08.17.
+ * Class that compose team controller to view
  */
-public abstract class TeamView extends ConsoleView {
+abstract class TeamView extends ConsoleView {
     TeamController controller = new TeamController();
-    TeamViewFactory viewFactory = new TeamViewFactory();
+    TeamViewFactory teamViewFactory = new TeamViewFactory();
 }

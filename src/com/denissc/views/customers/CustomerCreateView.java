@@ -3,7 +3,7 @@ package com.denissc.views.customers;
 import com.denissc.models.Customer;
 
 /**
- * Created by denissc on 09.08.17.
+ * Handles create customer process
  */
 public class CustomerCreateView extends CustomerView {
     private int customerId;
@@ -21,6 +21,7 @@ public class CustomerCreateView extends CustomerView {
         companyId = getUserIntInput();
         System.out.println("Customer name : ");
         customerName = getUserInput();
+        System.out.println("\n=====================\n");
         System.out.println("1 - create, 2 - back, 'quit' - for quit");
     }
 
@@ -29,14 +30,14 @@ public class CustomerCreateView extends CustomerView {
         switch (input) {
             case "1":
                 controller.create(new Customer(customerId,companyId, customerName));
-                render();
+                setNextView(this);
                 break;
             case "2":
-                viewFactory.getListView().render();
+                setNextView(customerViewFactory.getListView());
             case "quit":
                 break;
             default:
-                render();
+                setNextView(this);
         }
     }
 }

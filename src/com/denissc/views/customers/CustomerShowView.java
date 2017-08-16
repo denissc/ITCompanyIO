@@ -6,7 +6,7 @@ import com.denissc.models.Project;
 import java.util.Set;
 
 /**
- * Created by denissc on 09.08.17.
+ * Displays customer data
  */
 public class CustomerShowView extends CustomerView {
 
@@ -19,12 +19,15 @@ public class CustomerShowView extends CustomerView {
         Customer customer = controller.findById(customerId);
         System.out.println("Customer : ");
         System.out.println(customer);
-        System.out.println("Customer Projects : ");
         Set<Project> projects = controller.findCustomerProjects(customer);
-        for (Project project :
-                projects) {
-            System.out.println(project);
+        if (projects.size() > 0) {
+            System.out.println("Customer Projects : ");
+            for (Project project :
+                    projects) {
+                System.out.println(project);
+            }
         }
+        System.out.println("\n=====================\n");
         System.out.println("1 - show, 2 - back, 'quit' - for quit");
     }
 
@@ -32,15 +35,15 @@ public class CustomerShowView extends CustomerView {
     protected void processInput(String input) {
         switch (input){
             case "1":
-                render();
+                setNextView(this);
                 break;
             case "2":
-                viewFactory.getListView().render();
+                setNextView(customerViewFactory.getListView());
                 break;
             case "quit":
                 break;
             default:
-                render();
+                setNextView(this);
         }
     }
 }

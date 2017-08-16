@@ -3,7 +3,7 @@ package com.denissc.views.teams;
 import com.denissc.models.Team;
 
 /**
- * Created by denissc on 09.08.17.
+ * Team create view template
  */
 public class TeamCreateView extends TeamView {
     private int teamId;
@@ -21,6 +21,7 @@ public class TeamCreateView extends TeamView {
         projectId = getUserIntInput();
         System.out.println("Team name : ");
         teamName = getUserInput();
+        System.out.println("\n=====================\n");
         System.out.println("1 - create, 2 - back, 'quit' - for quit");
     }
 
@@ -29,14 +30,14 @@ public class TeamCreateView extends TeamView {
         switch (input) {
             case "1":
                 controller.create(new Team(teamId, projectId, teamName));
-                render();
+                setNextView(this);
                 break;
             case "2":
-                viewFactory.getListView().render();
+                setNextView(teamViewFactory.getListView());
             case "quit":
                 break;
             default:
-                render();
+                setNextView(this);
         }
     }
 }

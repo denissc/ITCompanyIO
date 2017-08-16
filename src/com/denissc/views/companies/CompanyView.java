@@ -5,10 +5,9 @@ import com.denissc.views.ConsoleViewFactory;
 import com.denissc.views.ConsoleView;
 
 /**
- * Created by denissc on 06.08.17.
+ * Class that composes company controller to view
  */
-public abstract class CompanyView extends ConsoleView {
+abstract class CompanyView extends ConsoleView {
     CompanyController controller = new CompanyController();
-
-    ConsoleViewFactory viewFactory = new CompanyViewFactory();
+    CompanyViewFactory companyViewFactory = new CompanyViewFactory();
 }

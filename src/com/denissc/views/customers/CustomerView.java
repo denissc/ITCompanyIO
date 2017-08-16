@@ -5,9 +5,9 @@ import com.denissc.views.ConsoleViewFactory;
 import com.denissc.views.ConsoleView;
 
 /**
- * Created by denissc on 09.08.17.
+ * Class that compose customer controller to view
  */
-public abstract class CustomerView extends ConsoleView {
+abstract class CustomerView extends ConsoleView {
     CustomerController controller = new CustomerController();
-    ConsoleViewFactory viewFactory = new CustomerViewFactory();
+    CustomerViewFactory customerViewFactory = new CustomerViewFactory();
 }

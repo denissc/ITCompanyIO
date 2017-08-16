@@ -2,7 +2,6 @@ package com.denissc.dao;
 
 import com.denissc.models.Company;
 import com.denissc.models.Customer;
-import com.denissc.models.Model;
 
 import java.io.EOFException;
 import java.io.IOException;

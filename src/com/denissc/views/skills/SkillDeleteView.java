@@ -3,7 +3,7 @@ package com.denissc.views.skills;
 import com.denissc.models.Skill;
 
 /**
- * Created by denissc on 10.08.17.
+ * Handle Delete skill process
  */
 public class SkillDeleteView extends SkillView {
     private int id;
@@ -15,6 +15,7 @@ public class SkillDeleteView extends SkillView {
         System.out.println("\n======================\n");
         System.out.print("Skill ID : ");
         id = getUserIntInput();
+        System.out.println("\n=====================\n");
         System.out.println("1 - delete, 2 - back, 'quit' - for quit");
     }
 
@@ -23,14 +24,15 @@ public class SkillDeleteView extends SkillView {
         switch (input) {
             case "1":
                 controller.delete(new Skill(id));
+                setNextView(this);
                 break;
             case "2":
-                viewFactory.getListView().render();
+                setNextView(skillViewFactory.getListView());
                 break;
             case "quit":
                 break;
             default:
-                render();
+                setNextView(this);
 
         }
     }
